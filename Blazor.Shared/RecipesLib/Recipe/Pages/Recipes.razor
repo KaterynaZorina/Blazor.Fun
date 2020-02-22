@@ -1,9 +1,31 @@
 ﻿<div>
     <label>Recipes:</label>
     <div>
-        @foreach (var recipe in RecipesList)
+        @foreach (var recipe in recipesList)
         {
             <RecipeDetails Recipe=@recipe></RecipeDetails>
         }
     </div>
 </div>
+
+@code{
+    private List<Recipe> recipesList;
+
+    public Recipes()
+    {
+        recipesList = new List<Recipe>
+        {
+            new Recipe
+            {
+                Title = "Borsch",
+                Description = "Ukrainian national meal",
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient {Title = "Potato", Amount = 4},
+                    new Ingredient {Title = "Tomato", Amount = 10},
+                    new Ingredient {Title = "Cabbage", Amount = 1}
+                }
+            }
+        };
+    }
+}

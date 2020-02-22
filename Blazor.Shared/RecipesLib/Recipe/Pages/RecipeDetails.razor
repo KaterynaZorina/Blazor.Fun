@@ -15,3 +15,17 @@
         <IngredientDetails Ingredient="@ingredient"></IngredientDetails>
     }
 </div>
+
+<div>
+    <AddIngredient OnIngredientAdd="AddNewIngredient"></AddIngredient>
+</div>
+
+@code{
+    [Parameter]
+    public Recipe Recipe { get; set; }
+
+    private void AddNewIngredient(Ingredient ingredient)
+    {
+        Recipe.Ingredients.Add(ingredient);
+    }
+}
