@@ -1,4 +1,12 @@
 ﻿@page "/"
 @page "/recipes"
 
-<p>Hello from recipes component</p>
+<div>
+    <label>Recipes:</label>
+    <div>
+        @foreach (var recipe in RecipesList)
+        {
+            <RecipeDetails Recipe=@recipe></RecipeDetails>
+        }
+    </div>
+</div>
