@@ -1,0 +1,32 @@
+﻿@page "/jsinterop"
+@inject IJSRuntime JsRuntime;
+
+<div>
+    <div>
+        <label>Call JS from C#</label>
+        
+        <button @onclick="MultiplyNumber">Multiply in js</button>
+    </div>
+    
+    <div>
+        <label>Call C# from JS</label>
+        
+        <button onclick="multiplyByFive()">Multiply in C#</button>
+    </div>
+</div>
+
+@code{
+    public async void MultiplyNumber()
+    {
+        var multiplyingResult = await JsRuntime.InvokeAsync<int>("multiplyNumber", 5);
+        Console.WriteLine(multiplyingResult);
+    }
+
+    [JSInvokable]
+    public static Task<int> MultiplyNumberByFive(int number)
+    {
+        var result = number * 5;
+
+        return Task.FromResult<int>(result);
+    }
+}
