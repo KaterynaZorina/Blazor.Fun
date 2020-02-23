@@ -1,0 +1,16 @@
+﻿@page "/jsinterop"
+@inject IJSRuntime JsRuntime;
+
+<div>
+    <div>
+        <button @onclick="MultiplyNumber">Multiply by 5</button>
+    </div>
+</div>
+
+@code{
+    public async void MultiplyNumber()
+    {
+        var multiplyingResult = await JsRuntime.InvokeAsync<int>("multiplyNumber", 5);
+        Console.WriteLine(multiplyingResult);
+    }
+}

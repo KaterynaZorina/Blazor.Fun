@@ -5,7 +5,6 @@ namespace RecipesLib.Recipe.Pages
 {
     public partial class IngredientDetails
     {
-        [Parameter]
-        public Ingredient Ingredient { get; set; }
+        
     }
 }
