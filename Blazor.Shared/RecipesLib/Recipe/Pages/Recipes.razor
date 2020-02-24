@@ -1,11 +1,9 @@
-﻿<div>
+﻿<div class="container">
     <label>Recipes:</label>
-    <div>
-        @foreach (var recipe in recipesList)
-        {
-            <RecipeDetails Recipe=@recipe></RecipeDetails>
-        }
-    </div>
+    @foreach (var recipe in recipesList)
+    {
+        <RecipeDetails Recipe=@recipe></RecipeDetails>
+    }
 </div>
 
 @code{
@@ -28,4 +26,5 @@
             }
         };
     }
+
 }

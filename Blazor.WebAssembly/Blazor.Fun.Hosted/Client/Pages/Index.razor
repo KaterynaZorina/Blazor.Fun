@@ -2,3 +2,63 @@
 @page "/recipes"
 
 <Recipes></Recipes>
+
+@code{
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        
+        Console.WriteLine("OnInitialized was called");
+        Console.WriteLine();
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        
+        Console.WriteLine("SetParametersAsync was called");
+        Console.WriteLine(string.Join(", ", parameters.ToDictionary().Select(p => $"key: {p.Key}, value: {p.Value}")));
+        Console.WriteLine();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        
+        Console.WriteLine("OnInitialized was called");
+        Console.WriteLine();
+    }
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        
+        if (firstRender)
+        {
+            Console.WriteLine("OnAfterRenderAsync was called first time");
+        }
+        else
+        {
+            Console.WriteLine("OnAfterRenderAsync was called");
+        }
+        Console.WriteLine();
+    }
+    
+    protected override bool ShouldRender()
+    {
+        base.ShouldRender();
+        
+        var renderUI = true;
+
+        Console.WriteLine("ShouldRender was called");
+        Console.WriteLine();
+        
+        return renderUI;
+    }
+    
+    public void Dispose()
+    {
+        Console.WriteLine("Dispose was called");
+    }
+}

@@ -1,26 +1,36 @@
-﻿<div>
-    <label>Recipe title</label>
-    <p>@Recipe.Title</p>
-</div>
-                    
-<div>
-    <label>Recipe description</label>
-    <p>@Recipe.Description</p>
+﻿<div class="row mb-3">
+    <div class="col-6 themed-grid-col">
+        <label>
+            Recipe title
+        </label>
+    </div>
+    <div class="col-6 themed-grid-col">
+        <p>@Recipe.Title</p>
+    </div>
 </div>
 
-<div>
-    <label>Ingredients:</label>
-    @foreach (var ingredient in Recipe.Ingredients)
-    {
-        <IngredientDetails Ingredient="@ingredient"></IngredientDetails>
-    }
+<div class="row mb-3">
+    <div class="col-6 themed-grid-col">
+        <label>Recipe description</label>
+    </div>
+    <div class="col-6 themed-grid-col">
+        <p>@Recipe.Description</p>
+    </div>
 </div>
+
+
+<label>Ingredients:</label>
+@foreach (var ingredient in Recipe.Ingredients)
+{
+    <IngredientDetails Ingredient="@ingredient"></IngredientDetails>
+}
 
 <div>
     <AddIngredient OnIngredientAdd="AddNewIngredient"></AddIngredient>
 </div>
 
 @code{
+
     [Parameter]
     public Recipe Recipe { get; set; }
 
@@ -28,4 +38,5 @@
     {
         Recipe.Ingredients.Add(ingredient);
     }
+
 }
