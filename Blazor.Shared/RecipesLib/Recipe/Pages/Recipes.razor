@@ -1,17 +1,29 @@
-﻿<div class="container">
+﻿@inject NavigationManager NavigationManager;
+
+<div class="container">
     <label>Recipes:</label>
-    @foreach (var recipe in recipesList)
-    {
-        <RecipeDetails Recipe=@recipe></RecipeDetails>
-    }
+    
+    <div>
+        <CascadingValue Value="_backgroundColor" Name="BackgroundColor">
+                @foreach (var recipe in _recipesList)
+                {
+                    <RecipeDetails Recipe=@recipe></RecipeDetails>
+                }
+            </CascadingValue>
+    </div>
+
+    <div class="row mb-3">
+        <button class="btn btn-primary" @onclick="NavigateToJSInterop">Navigate to JS Interop demo</button>
+    </div>
 </div>
 
 @code{
-    private List<Recipe> recipesList;
+    private List<Recipe> _recipesList;
+    private string _backgroundColor = "#0000ff3d";
 
     public Recipes()
     {
-        recipesList = new List<Recipe>
+        _recipesList = new List<Recipe>
         {
             new Recipe
             {
@@ -27,4 +39,8 @@
         };
     }
 
+    private void NavigateToJSInterop()
+    {
+        NavigationManager.NavigateTo("jsinterop");
+    }
 }

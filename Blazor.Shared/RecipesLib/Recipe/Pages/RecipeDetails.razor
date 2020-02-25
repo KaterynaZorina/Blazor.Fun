@@ -20,6 +20,18 @@
 
 
 <label>Ingredients:</label>
+<div class="row mb-3" style="background-color: @BackgroundColor">
+    <div class="col-6 themed-grid-col">
+        <label>
+            Title
+        </label>
+    </div>
+    <div class="col-6 themed-grid-col">
+        <label>
+            Amount
+        </label>
+    </div>
+</div>
 @foreach (var ingredient in Recipe.Ingredients)
 {
     <IngredientDetails Ingredient="@ingredient"></IngredientDetails>
@@ -30,7 +42,9 @@
 </div>
 
 @code{
-
+    [CascadingParameter(Name="BackgroundColor")]
+    protected string BackgroundColor { get; set; }
+    
     [Parameter]
     public Recipe Recipe { get; set; }
 

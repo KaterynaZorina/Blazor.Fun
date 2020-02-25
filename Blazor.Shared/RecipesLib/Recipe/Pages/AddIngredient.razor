@@ -1,18 +1,23 @@
 ﻿<EditForm Model="@_ingredientModel" OnValidSubmit="AddNewIngredient">
-    <DataAnnotationsValidator />
+    <DataAnnotationsValidator/>
 
-    <label>Ingredient title</label>
-    <InputText id="title" @bind-Value="_ingredientModel.Title" />
-    <ValidationMessage For="@(() => _ingredientModel.Title)"></ValidationMessage>
-
-    <label>Ingredient amount</label>
-    <InputNumber id="amount" @bind-Value="_ingredientModel.Amount"></InputNumber>
-    <ValidationMessage For="@(() => _ingredientModel.Amount)"></ValidationMessage>
-    
+    <div class="row mb-3">
+        <div class="col-6 themed-grid-col">
+            <label>Ingredient title</label>
+            <InputText id="title" @bind-Value="_ingredientModel.Title"/>
+            <ValidationMessage For="@(() => _ingredientModel.Title)"></ValidationMessage>
+        </div>
+        <div class="col-6 themed-grid-col">
+            <label>Ingredient amount</label>
+            <InputNumber id="amount" @bind-Value="_ingredientModel.Amount"></InputNumber>
+            <ValidationMessage For="@(() => _ingredientModel.Amount)"></ValidationMessage>
+        </div>
+    </div>
     <button type="submit">Submit</button>
 </EditForm>
 
 @code{
+
     [Parameter]
     public EventCallback<Ingredient> OnIngredientAdd { get; set; } = new EventCallback<Ingredient>();
 
@@ -22,4 +27,5 @@
     {
         await OnIngredientAdd.InvokeAsync(_ingredientModel);
     }
+
 }
